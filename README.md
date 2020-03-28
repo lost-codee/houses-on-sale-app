@@ -10,10 +10,22 @@ Just a Random UI Implementation with flutter .
 
 ## Screenshots:
 
-![1](screenshot/1.png) ![2](screenshot/2.png) ![3](screenshot/3.png) ![4](screenshot/4.png) ![5](screenshot/5.png) ![6](screenshot/6.png) ![7](screenshot/7.png)
+<img src="screenshots/1.png" width="250"/>
+
+<img src="screenshots/4.png" width="250"/>
+
+<img src="screenshots/5.png" width="250"/>
+
+<img src="screenshots/6.png" width="250"/>
+
+<img src="screenshots/7.png" width="250"/>
 
 ## Tools & languages:
 
 - VS Code .
 - Dart (Logic & Design).
 - Flutter (Mobile UI developement kit).
+
+## Others :
+
+- Image Resource : ![unsplash](https://unsplash.com/)

@@ -10,6 +10,7 @@ Just a Random UI Implementation with flutter .
 
 ## Screenshots:
 
+<p float="left">
 <img src="screenshots/1.png" width="250"/>
 
 <img src="screenshots/4.png" width="250"/>
@@ -19,7 +20,7 @@ Just a Random UI Implementation with flutter .
 <img src="screenshots/6.png" width="250"/>
 
 <img src="screenshots/7.png" width="250"/>
-
+</p>
 ## Tools & languages:
 
 - VS Code .

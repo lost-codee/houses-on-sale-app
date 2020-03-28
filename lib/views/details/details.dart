@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate/models/property_model.dart';
+import 'package:real_estate/models/user_model.dart';
 import 'package:real_estate/utils/constant.dart';
 
 class Details extends StatefulWidget {
@@ -11,6 +12,8 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     Property property = ModalRoute.of(context).settings.arguments as Property;
+    Color favoriteColor =
+        user.favorite.contains(property) ? Colors.redAccent : ksecondary;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -139,17 +142,32 @@ class _DetailsState extends State<Details> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        Container(
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30.0),
-                              color: Colors.white,
-                            ),
-                            child: Icon(
-                              Icons.favorite,
-                              size: 15.0,
-                              color: ksecondary,
-                            )),
+                        GestureDetector(
+                          onTap: () {
+                            if (!user.favorite.contains(property)) {
+                              user.favorite.add(property);
+                              setState(() {
+                                favoriteColor = Colors.redAccent;
+                              });
+                            } else {
+                              user.favorite.remove(property);
+                              setState(() {
+                                favoriteColor = ksecondary;
+                              });
+                            }
+                          },
+                          child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.white,
+                              ),
+                              child: Icon(
+                                Icons.favorite,
+                                size: 15.0,
+                                color: favoriteColor,
+                              )),
+                        ),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -190,24 +208,7 @@ class _DetailsState extends State<Details> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Container(
-                              width: 100.0,
-                              height: 4.0,
-                              decoration:
-                                  BoxDecoration(color: Colors.grey[400]),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10.0),
+                        SizedBox(height: 30.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -252,27 +253,30 @@ class _DetailsState extends State<Details> {
                                     padding: EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30.0),
-                                      color: Colors.white,
+                                      color: Colors.black87,
                                     ),
-                                    child: Icon(
-                                      Icons.call,
-                                      size: 15.0,
-                                      color: ksecondary,
-                                    )),
+                                    child: Icon(Icons.call,
+                                        size: 15.0, color: Colors.white)),
                                 SizedBox(
                                   width: 10.0,
                                 ),
-                                Container(
+                                GestureDetector(
+                                  onTap: () {
+                                    print("message");
+                                  },
+                                  child: Container(
                                     padding: EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30.0),
-                                      color: Colors.white,
+                                      color: Colors.black87,
                                     ),
                                     child: Icon(
                                       Icons.message,
                                       size: 15.0,
-                                      color: ksecondary,
-                                    )),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
                               ],
                             )
                           ],
@@ -302,7 +306,7 @@ class _DetailsState extends State<Details> {
                                           child: Icon(
                                             property.feature.equipment[map.key]
                                                 .icon,
-                                            color: ksecondary,
+                                            color: Colors.black87,
                                           )),
                                       SizedBox(
                                         height: 5.0,
@@ -312,7 +316,7 @@ class _DetailsState extends State<Details> {
                                         style: TextStyle(
                                             color: Colors.grey[400],
                                             fontSize: 12.0,
-                                            fontWeight: FontWeight.w300),
+                                            fontWeight: FontWeight.w400),
                                       )
                                     ],
                                   ),

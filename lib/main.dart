@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:real_estate/views/details/details.dart';
 import 'views/authenticate/sign_in.dart';
 import 'views/home/home.dart';
+import 'views/onboarding/onboarding.dart';
 import 'views/wrapper.dart';
 
 void main() => runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         "/home": (BuildContext context) => new Home(),
         "/details": (BuildContext context) => new Details(),
       },
-      home: Wrapper(),
+      home: OnBoardingScreen(),
     );
   }
 }

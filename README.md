@@ -1,16 +1,19 @@
-# real_estate
+# Real Estate App
 
-A new Flutter project.
+#### Highly inspired by :
 
-## Getting Started
+![by Adarsh Goldar](https://dribbble.com/shots/9681228-Real-Estate-App-Screens-Overview/attachments/1710127?mode=media)
 
-This project is a starting point for a Flutter application.
+## Description:
 
-A few resources to get you started if this is your first Flutter project:
+Just a Random UI Implementation with flutter .
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Screenshots:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![1](screenshot/1.png) ![2](screenshot/2.png) ![3](screenshot/3.png) ![4](screenshot/4.png) ![5](screenshot/5.png) ![6](screenshot/6.png) ![7](screenshot/7.png)
+
+## Tools & languages:
+
+- VS Code .
+- Dart (Logic & Design).
+- Flutter (Mobile UI developement kit).

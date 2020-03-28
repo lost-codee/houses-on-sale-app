@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate/utils/constant.dart';
+import 'package:real_estate/views/favorite/favorite.dart';
 import 'package:real_estate/views/home/home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -19,7 +20,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
 
   static List<Widget> _widgetOption = <Widget>[
     Home(),
-    Home(),
+    Favorite(),
     Home(),
   ];
 
@@ -33,7 +34,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: ksecondary,
+        selectedItemColor: kprimary,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
@@ -44,7 +45,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.location_on,
+              Icons.favorite,
               size: 30.0,
             ),
             title: SizedBox.shrink(),

@@ -54,6 +54,7 @@ class _HomeState extends State<Home> {
         context: context,
         builder: (BuildContext bc) {
           return StatefulBuilder(builder: (context, state) {
+            var label;
             return FractionallySizedBox(
                 heightFactor: 0.65,
                 child: Container(
@@ -121,6 +122,7 @@ class _HomeState extends State<Home> {
                                   onChanged: (value) => state(() {
                                     _value = value;
                                   }),
+                                  label: label,
                                   value: _value,
                                   max: 1000,
                                   min: 70,
@@ -201,11 +203,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: SafeArea(
             child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.symmetric(vertical: 30.0),
+            padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
             child: Column(
               children: <Widget>[
                 Row(
@@ -253,19 +255,19 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               children: <Widget>[
                 Flexible(
                   child: TextField(
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: kprimary)),
+                          borderSide:
+                              BorderSide(color: Color(0xff459ee8), width: 1.5)),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: kprimary,
+                        color: Color(0xff459ee8),
                       ),
-                      hintText: "Oran, Canastel",
-                      focusColor: Colors.yellow,
                     ),
                     onChanged: (string) {
                       _debouncer.run(() {
@@ -287,7 +289,7 @@ class _HomeState extends State<Home> {
                   onPressed: () => _settingModalBottomSheet(context),
                   icon: Icon(
                     Icons.filter_list,
-                    color: kprimary,
+                    color: Color(0xff459ee8),
                   ),
                 ),
               ],
@@ -334,8 +336,8 @@ class _HomeState extends State<Home> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black26,
-                              offset: Offset(-4.0, 2.0),
-                              blurRadius: 6.0,
+                              offset: Offset(-3.0, 3.0),
+                              blurRadius: 10.0,
                             )
                           ]),
                       child: Stack(

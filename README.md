@@ -2,7 +2,7 @@
 
 #### Highly inspired by :
 
-![by Adarsh Goldar](https://dribbble.com/shots/9681228-Real-Estate-App-Screens-Overview/attachments/1710127?mode=media)
+![by Adarsh Goldar](https://dribbble.com/shots/9681228-Real-Estate-App-Screens-Overview)
 
 ## Description:
 
@@ -20,7 +20,10 @@ Just a Random UI Implementation with flutter .
 <img src="screenshots/6.png" width="250"/>
 
 <img src="screenshots/7.png" width="250"/>
+
+<img src="screenshots/8.png" width="250"/>
 </p>
+
 ## Tools & languages:
 
 - VS Code .

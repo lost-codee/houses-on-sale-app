@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:real_estate/utils/constant.dart';
 import 'package:real_estate/views/favorite/favorite.dart';
 import 'package:real_estate/views/home/home.dart';
+import 'package:real_estate/views/user/add_propery_view.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   static List<Widget> _widgetOption = <Widget>[
     Home(),
     Favorite(),
-    Home(),
+    AddPropertyView(),
   ];
 
   void _getNewIndex(int index) {

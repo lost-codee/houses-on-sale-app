@@ -16,6 +16,9 @@ dependencies:
   page_view_indicator: ^2.0.2
   sliding_up_panel: ^0.3.6
 
+  #logic
+  image_picker: ^0.6.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

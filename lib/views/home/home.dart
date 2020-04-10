@@ -198,7 +198,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
     final _debouncer = Debouncer(milliseconds: 500);
     return Scaffold(
         body: SafeArea(

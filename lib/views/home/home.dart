@@ -345,11 +345,11 @@ class _HomeState extends State<Home> {
                             heightFactor: 1.0,
                             widthFactor: 1.0,
                             child: Hero(
-                              tag: property.imageUrl,
+                              tag: property.imageUrl ?? "",
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
                                 child: Image(
-                                  image: AssetImage(property.imageUrl),
+                                  image: AssetImage(property.imageUrl ?? ""),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -376,7 +376,7 @@ class _HomeState extends State<Home> {
                                       vertical: 5.0, horizontal: 10.0),
                                   color: ksecondary,
                                   child: Text(
-                                    "FOR ${property.purpose}",
+                                    "FOR ${property.purpose ?? ""}",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12.0,
@@ -389,7 +389,7 @@ class _HomeState extends State<Home> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  property.name,
+                                  property.name ?? "",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.0,
@@ -429,7 +429,7 @@ class _HomeState extends State<Home> {
                                         width: 5.0,
                                       ),
                                       Text(
-                                        "${property.area} sq/m",
+                                        "${property.area ?? ""} sq/m",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12.0),
@@ -446,7 +446,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    "\$${property.price}.00",
+                                    "\$${property.price ?? ""}.00",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20.0,
@@ -467,7 +467,7 @@ class _HomeState extends State<Home> {
                                         width: 5.0,
                                       ),
                                       Text(
-                                        "${property.review} Reviews",
+                                        "${property.review ?? ""} Reviews",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12.0),

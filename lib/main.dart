@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate/views/details/details.dart';
+import 'package:real_estate/views/user/property%20add/page2.dart';
+import 'package:real_estate/views/user/property%20add/page3.dart';
 import 'views/authenticate/sign_in.dart';
 import 'views/home/home.dart';
 import 'views/onboarding/onboarding.dart';

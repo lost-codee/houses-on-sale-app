@@ -6,6 +6,7 @@ class Property {
   String name;
   String type;
   String city;
+  int zipCode;
   String address;
   String imageUrl;
   double area;

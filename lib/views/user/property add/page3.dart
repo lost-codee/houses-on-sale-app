@@ -5,10 +5,11 @@ import 'package:real_estate/models/property_model.dart';
 import 'package:real_estate/utils/constant.dart';
 
 class AddPropertyPage3 extends StatefulWidget {
-  AddPropertyPage3({Key key, this.newProperty}) : super(key: key);
-
+  final Function changePages;
+  final Function updateProperty;
   Property newProperty;
 
+  AddPropertyPage3({this.newProperty, this.changePages, this.updateProperty});
   @override
   _AddPropertyPage3State createState() => _AddPropertyPage3State();
 }
@@ -16,7 +17,6 @@ class AddPropertyPage3 extends StatefulWidget {
 class _AddPropertyPage3State extends State<AddPropertyPage3> {
   final _formKey = GlobalKey<FormState>();
   Features newPropertyFeatures = Features();
-  bool loading;
   String error = " ";
   String propertyType;
   Equipment equipment;
@@ -29,155 +29,150 @@ class _AddPropertyPage3State extends State<AddPropertyPage3> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Container(
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-            alignment: Alignment.center,
-            child: Column(children: <Widget>[
-              Text(
-                "Add Property",
-                style: TextStyle(
-                  fontSize: 60.0,
-                  fontWeight: FontWeight.bold,
+    return Form(
+      key: _formKey,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            DropdownButton<String>(
+              isExpanded: true,
+              hint: Text(widget.newProperty.type ?? "Choose Home Type"),
+              items: <String>['Apartment', 'Multi Family', 'TownHouse', 'Villa']
+                  .map((String value) {
+                return new DropdownMenuItem<String>(
+                  value: value,
+                  child: new Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+                setState(() {
+                  widget.newProperty.type = val;
+                });
+              },
+            ),
+            Column(
+              children: listEquipment
+                  .asMap()
+                  .entries
+                  .map((MapEntry map) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              listEquipment[map.key].icon,
+                              color: ksecondary,
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Flexible(
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                decoration: TextInputDecoration.copyWith(
+                                    hintText: "Number of " +
+                                        listEquipment[map.key].type),
+                                validator: (val) =>
+                                    val.length <= 0 ? 'Field is empty' : null,
+                                onChanged: (val) {
+                                  listEquipment[map.key]
+                                      .setNumber(int.parse(val));
+                                },
+                              ),
+                            ),
+                            IconButton(
+                                icon: Icon(
+                                  Icons.cancel,
+                                  color: kprimary,
+                                ),
+                                onPressed: () => setState(() {
+                                      dropButtonListEquipment
+                                          .add(listEquipment[map.key]);
+                                      listEquipment.removeLast();
+                                    }))
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flexible(
+                  flex: 3,
+                  child: DropdownButton<Equipment>(
+                    isExpanded: true,
+                    hint: Text("Add Rooms"),
+                    items: dropButtonListEquipment.map((Equipment value) {
+                      return new DropdownMenuItem<Equipment>(
+                        value: value,
+                        child: new Text(value.type),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        equipment = val;
+                        int index = dropButtonListEquipment.indexOf(equipment);
+                        dropButtonListEquipment.removeAt(index);
+                        listEquipment.add(equipment);
+                      });
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DropdownButton<String>(
-                        hint: Text(propertyType ?? ""),
-                        items: <String>[
-                          'Apartment',
-                          'Multi Family',
-                          'TownHouse',
-                          'Villa'
-                        ].map((String value) {
-                          return new DropdownMenuItem<String>(
-                            value: value,
-                            child: new Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (val) {
-                          setState(() {
-                            propertyType = val;
-                          });
-                        },
-                      ),
-                      listEquipment.length > 0
-                          ? Column(
-                              children: listEquipment
-                                  .asMap()
-                                  .entries
-                                  .map((MapEntry map) => Row(
-                                        children: <Widget>[
-                                          Icon(listEquipment[map.key].icon),
-                                          Flexible(
-                                            child: TextFormField(
-                                              decoration:
-                                                  TextInputDecoration.copyWith(
-                                                      hintText:
-                                                          listEquipment[map.key]
-                                                              .type),
-                                              validator: (val) =>
-                                                  val.length >= 5
-                                                      ? 'Enter at least 5 char'
-                                                      : null,
-                                              onChanged: (val) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                          ),
-                                          IconButton(
-                                              icon: Icon(Icons.cancel),
-                                              onPressed: () => setState(() {
-                                                    dropButtonListEquipment.add(
-                                                        listEquipment[map.key]);
-                                                    listEquipment.removeLast();
-                                                  }))
-                                        ],
-                                      ))
-                                  .toList(),
-                            )
-                          : Text(""),
-                      Row(
-                        children: <Widget>[
-                          DropdownButton<Equipment>(
-                            hint: Text("Add Rooms"),
-                            items:
-                                dropButtonListEquipment.map((Equipment value) {
-                              return new DropdownMenuItem<Equipment>(
-                                value: value,
-                                child: new Text(value.type),
-                              );
-                            }).toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                equipment = val;
-                              });
-                            },
-                          ),
-                          Flexible(
-                              child: RaisedButton(
-                            color: kprimary,
-                            onPressed: () {
-                              setState(() {
-                                int index =
-                                    dropButtonListEquipment.indexOf(equipment);
-                                dropButtonListEquipment.removeAt(index);
-                                print(index);
-                                listEquipment.add(equipment);
-                              });
-                            },
-                            child: Text("Add"),
-                          )),
-                        ],
-                      ),
-                      TextFormField(
-                        decoration: TextInputDecoration.copyWith(
-                            hintText: "Phone number"),
-                        validator: (val) =>
-                            val.length >= 5 ? 'Enter at least 5 char' : null,
-                        onChanged: (val) {
-                          setState(() {});
-                        },
-                      ),
-                      RaisedButton(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 110.0, vertical: 15.0),
-                          color: kprimary,
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              setState(() {
-                                loading = true;
-                              });
-                              setState(() {
-                                error = 'Connexion erreur';
-                                loading = false;
-                              });
-                            }
-                          }),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
-                      )
-                    ]),
-              )
-            ])));
+              ],
+            ),
+            TextFormField(
+              keyboardType: TextInputType.number,
+              decoration:
+                  TextInputDecoration.copyWith(hintText: "Phone number"),
+              validator: (val) =>
+                  val.length == 10 ? 'Enter 10 digits phone number' : null,
+              onChanged: (val) {
+                widget.newProperty.owner.phoneNumber = int.parse(val);
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                RaisedButton(
+                    child: Text(
+                      'Previous',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[400]),
+                    ),
+                    onPressed: () {
+                      widget.updateProperty(widget.newProperty);
+                      widget.changePages(2);
+                    }),
+                RaisedButton(
+                    color: kprimary,
+                    child: Text(
+                      'Next',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        widget.newProperty.feature.equipment = listEquipment;
+                        properties.add(widget.newProperty);
+                        widget.updateProperty(widget.newProperty);
+                        widget.changePages(3);
+                      }
+                    }),
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14.0),
+            )
+          ]),
+    );
   }
 }

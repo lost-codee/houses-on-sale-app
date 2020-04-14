@@ -49,6 +49,10 @@ class Equipment {
   int number;
   IconData icon;
   Equipment({this.number, this.icon, this.type});
+
+  void setNumber(int number) {
+    this.number = number;
+  }
 }
 
 Features featureCopy = Features(

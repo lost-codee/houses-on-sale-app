@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate/models/property_features_model.dart';
 import 'package:real_estate/models/property_model.dart';
-import 'package:real_estate/views/user/property%20add/page1.dart';
-import 'package:real_estate/views/user/property%20add/page2.dart';
-import 'package:real_estate/views/user/property%20add/page3.dart';
+import 'package:real_estate/views/property%20add/page1.dart';
+import 'package:real_estate/views/property%20add/page2.dart';
+import 'page3.dart';
 
 class AddPropertyView extends StatefulWidget {
   AddPropertyView({Key key}) : super(key: key);
@@ -39,11 +39,15 @@ class _AddPropertyViewState extends State<AddPropertyView> {
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
             alignment: Alignment.center,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                SizedBox(
+                  height: 20.0,
+                ),
                 Text(
                   "Add Property",
                   style: TextStyle(
-                    fontSize: 60.0,
+                    fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -12,6 +12,7 @@ class Property {
   double area;
   double review;
   int price;
+  int rooms;
   String purpose;
   bool isOwner = true;
   Owner owner;
@@ -28,6 +29,7 @@ class Property {
       this.purpose,
       this.owner,
       this.isOwner,
+      this.rooms,
       this.feature});
 }
 
@@ -38,6 +40,7 @@ final List<Property> properties = [
     area: 2456.0,
     price: 3500,
     review: 4.4,
+    rooms: 5,
     owner: Owner(imageUrl: "assets/img/p2.jpg", name: "James Miner"),
     purpose: "SALE",
     imageUrl: "assets/img/home_ext_1.jpg",
@@ -49,6 +52,7 @@ final List<Property> properties = [
     area: 2100.0,
     price: 3100,
     review: 4.1,
+    rooms: 2,
     owner: Owner(imageUrl: "assets/img/p2.jpg", name: "James Miner"),
     purpose: "RENT",
     imageUrl: "assets/img/home_ext_2.jpg",
@@ -60,6 +64,7 @@ final List<Property> properties = [
     area: 4100.0,
     price: 4500,
     review: 4.5,
+    rooms: 1,
     owner: Owner(
       imageUrl: "assets/img/p2.jpg",
       name: "James Miner",

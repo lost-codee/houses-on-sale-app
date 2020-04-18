@@ -43,8 +43,8 @@ class _AddPropertyPage2State extends State<AddPropertyPage2> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextFormField(
-              decoration:
-                  TextInputDecoration.copyWith(hintText: 'Area Surface in m²*'),
+              decoration: TextInputDecoration.copyWith(
+                  labelText: 'Area Surface in m²*'),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.area = double.parse(val);
@@ -53,7 +53,7 @@ class _AddPropertyPage2State extends State<AddPropertyPage2> {
             ),
             TextFormField(
               decoration:
-                  TextInputDecoration.copyWith(hintText: 'Set Your Price*'),
+                  TextInputDecoration.copyWith(labelText: 'Set Your Price*'),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.price = int.parse(val);
@@ -91,79 +91,87 @@ class _AddPropertyPage2State extends State<AddPropertyPage2> {
                       ],
                     ),
                   )
-                : Container(
-                    height: 150.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _images.length + 1,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index == 0) {
-                          return Container(
-                            padding: EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[400])),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Text('No image selected.'),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                FlatButton(
-                                  color: kprimary,
-                                  onPressed: () async =>
-                                      _pickImage(ImageSource.gallery),
-                                  child: Text(
-                                    "Add New Photos",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ],
+                : Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(20.0),
+                        child: FlatButton(
+                          color: kprimary,
+                          onPressed: () async =>
+                              _pickImage(ImageSource.gallery),
+                          child: Text(
+                            "Add New Photos",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 180.0,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.all(10.0),
+                              itemCount: _images.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Stack(
+                                  children: <Widget>[
+                                    Image.file(
+                                      _images[index],
+                                    ),
+                                    Container(
+                                      width: 180.0,
+                                      height: 50.0,
+                                      color: Colors.black45,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        index == 0
+                                            ? Text(
+                                                "Main Photo",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )
+                                            : Text(""),
+                                        SizedBox(
+                                          width: 30.0,
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.cancel,
+                                            color: Colors.white70,
+                                          ),
+                                          onPressed: () => setState(() {
+                                            _images.removeAt(index);
+                                          }),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                );
+                              },
                             ),
-                          );
-                        }
-                        return Stack(
-                          children: <Widget>[
-                            Image.file(_images[index - 1],
-                                width: 150.0, height: 150.0),
-                            Container(
-                              width: 150.0,
-                              height: 50.0,
-                              color: Colors.black45,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                index == 1
-                                    ? Text(
-                                        "Main Photo",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    : Text(""),
-                                SizedBox(
-                                  width: 30.0,
-                                ),
-                                IconButton(
+                          ),
+                          Positioned(
+                              right: 0.0,
+                              top: 30.0,
+                              child: IconButton(
                                   icon: Icon(
-                                    Icons.cancel,
-                                    color: Colors.white70,
+                                    Icons.arrow_right,
+                                    color: Colors.black,
+                                    size: 80.0,
                                   ),
-                                  onPressed: () => setState(() {
-                                    _images.removeAt(index - 1);
-                                  }),
-                                ),
-                              ],
-                            )
-                          ],
-                        );
-                      },
-                    ),
+                                  onPressed: null)),
+                        ],
+                      ),
+                    ],
                   ),
             SizedBox(
               height: 20.0,

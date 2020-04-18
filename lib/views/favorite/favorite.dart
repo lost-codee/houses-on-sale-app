@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate/models/property_model.dart';
-import 'package:real_estate/models/user_model.dart';
+import 'package:real_estate/services/user_service.dart';
 import 'package:real_estate/widgets/Property_showcase.dart';
 
 class Favorite extends StatefulWidget {

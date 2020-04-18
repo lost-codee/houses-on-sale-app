@@ -25,8 +25,9 @@ class _AddPropertyPage1State extends State<AddPropertyPage1> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextFormField(
-              decoration:
-                  TextInputDecoration.copyWith(hintText: 'Street address *'),
+              decoration: TextInputDecoration.copyWith(
+                labelText: 'Street address *',
+              ),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.address = val;
@@ -35,7 +36,7 @@ class _AddPropertyPage1State extends State<AddPropertyPage1> {
             ),
             TextFormField(
               decoration:
-                  TextInputDecoration.copyWith(hintText: 'Units# optional'),
+                  TextInputDecoration.copyWith(labelText: 'Units# optional'),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.address += " " + val;
@@ -44,7 +45,7 @@ class _AddPropertyPage1State extends State<AddPropertyPage1> {
             ),
             //TODO :This will become a dropbox with cities
             TextFormField(
-              decoration: TextInputDecoration.copyWith(hintText: 'City'),
+              decoration: TextInputDecoration.copyWith(labelText: 'City'),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.city = val;
@@ -52,7 +53,7 @@ class _AddPropertyPage1State extends State<AddPropertyPage1> {
               },
             ),
             TextFormField(
-              decoration: TextInputDecoration.copyWith(hintText: 'Zip Code'),
+              decoration: TextInputDecoration.copyWith(labelText: 'Zip Code'),
               onChanged: (val) {
                 setState(() {
                   widget.newProperty.zipCode = int.parse(val);

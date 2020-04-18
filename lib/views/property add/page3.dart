@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:real_estate/models/property_features_model.dart';
 import 'package:real_estate/models/property_model.dart';
+import 'package:real_estate/services/database_service.dart';
 import 'package:real_estate/utils/constant.dart';
 
 class AddPropertyPage3 extends StatefulWidget {
